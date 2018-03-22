@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+import subprocess
+import os,time
+iplist=["0.0.0.0", "0.0.0.0", "0.0.0.0"]
+activeip = []
+
+while (iplist > 0):
+    for address in iplist:
+         
+        res = subprocess.call(['ping', '-c', '1', address])
+        if res == 0:
+            print "ping to", address, "OK"
+            activeip.append(address)
+            print activeip[-1]
+        elif res == 2:
+            print "no response from", address
+            
+        else:
+            print "ping to", address, "failed!"
+    
+    time.sleep(120)
